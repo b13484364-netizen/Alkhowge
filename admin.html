@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة تحكم القهوجي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #006666;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px #ccc;
+      border-radius: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #006666;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #009999;
+    }
+    .success {
+      text-align: center;
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+  <script type="module" src="scripts/firebase-admin.js"></script>
+</head>
+<body>
+  <h1>إضافة منتج جديد</h1>
+  <form id="productForm">
+    <input type="text" id="name" placeholder="اسم المنتج" required>
+    <textarea id="description" placeholder="وصف المنتج" rows="3"></textarea>
+    <input type="number" id="price" placeholder="السعر بالدولار" required>
+    <input type="text" id="image" placeholder="رابط الصورة" required>
+    <input type="text" id="category" placeholder="التصنيف (مثلاً: لابتوب)">
+    <button type="submit">إضافة المنتج</button>
+    <div class="success" id="successMessage" style="display:none;">✔️ تم إضافة المنتج بنجاح</div>
+  </form>
+</body>
+</html>

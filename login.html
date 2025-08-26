@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>تسجيل الدخول | متجر القهوجي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      padding: 3rem;
+    }
+    .login-box {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+      max-width: 400px;
+      margin: auto;
+    }
+    button {
+      background-color: #6e4027;
+      color: white;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #8b5637;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 13px;
+    }
+    footer a {
+      color: #d4af37;
+      margin: 0 5px;
+      text-decoration: none;
+    }
+  </style>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+    import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    getRedirectResult(auth).then((result) => {
+      if (result.user) {
+        window.location.href = "admin.html";
+      }
+    }).catch((error) => {
+      console.error("Login error:", error);
+    });
+
+    function loginWithGoogle() {
+      const provider = new GoogleAuthProvider();
+      signInWithRedirect(auth, provider);
+    }
+
+    window.loginWithGoogle = loginWithGoogle;
+  </script>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>تسجيل الدخول</h1>
+    <p>استخدم حساب Gmail للمتابعة وإدارة المنتجات.</p>
+    <button onclick="loginWithGoogle()">تسجيل الدخول باستخدام Google</button>
+    <p style="margin-top: 1rem; font-size: 13px;">
+      باستخدامك للتسجيل، فإنك توافق على
+      <a href="privacy.html">سياسة الخصوصية</a> و
+      <a href="terms.html">الشروط والأحكام</a>.
+    </p>
+  </div>
+
+  <footer>
+    <a href="index.html">الصفحة الرئيسية</a> |
+    <a href="privacy.html">سياسة الخصوصية</a> |
+    <a href="terms.html">الشروط والأحكام</a>
+  </footer>
+
+</body>
+</html>
